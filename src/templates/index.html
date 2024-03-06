@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="../static/style.css"/>
+        <meta charset="UTF-8">
+        <title>Nabídky bytů</title>
+    </head>
+    <body>
+        <h1>Nabídky bytů</h1>
+        <p>Nalezeno {{estates|length}} nabídek.</p>
+        <div class="list">
+            {% for e in estates %}
+                <div class="container">
+                    <p>{{e[0]}} - {{e[1]}}</p>
+                    {% for p in e[2] %}
+                        <img src={{p["href"]}} width="150">
+                    {%endfor%}
+                </div>
+            {% endfor %}
+        </div>
+    </body>
+    <footer>
+        <span><b>David Kocman, 2024</b></span>
+    </footer>
+</html>
