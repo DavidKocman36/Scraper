@@ -1,0 +1,34 @@
+version: "3.3"
+
+services:
+  database:
+    hostname: database
+    image: postgres 
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: estates
+    healthcheck:      
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB} -t 1"]
+      interval: 3s
+      timeout: 4s
+      retries: 10
+      start_period: 3s
+  
+  server:
+    image: app
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080    
+    depends_on:
+      database:
+        condition: service_healthy 
+    links: 
+      - database
+    restart: always
+    

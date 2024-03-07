@@ -12,7 +12,8 @@ from psycopg2.extras import Json
 
 class RealityscraperPipeline:
     def __init__(self):
-        hostname = 'localhost'
+        #hostname = 'localhost'
+        hostname = 'database'
         username = 'postgres'
         password = '123456'
         database = 'estates'

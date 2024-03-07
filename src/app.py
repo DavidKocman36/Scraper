@@ -8,7 +8,8 @@ from scrapy.utils.project import get_project_settings
 app = Flask(__name__)
 
 def connect():
-    hostname = 'localhost'
+    #hostname = 'localhost'
+    hostname = 'database'
     username = 'postgres'
     password = '123456'
     database = 'estates'
@@ -33,4 +34,4 @@ def hello_world():
     return render_template('index.html', estates=estates)
  
 if __name__ == '__main__':
-    app.run(debug=False, port=8080)
+    app.run(debug=False, host="0.0.0.0", port=8080)
